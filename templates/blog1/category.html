@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Index Page {% endblock %}
+
+
+{% block content %}
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog-mf sect-pt4 route">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box text-center">
+                        <h3 class="title-a">
+                            {{ cat.name }} Yangiliklar
+                        </h3>
+                        <div class="line-mf"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in data %}
+                    <div class="col-md-4">
+                    <div class="card card-blog">
+                        {% if i.photo %}
+                        <div class="card-img">
+                            <a href="{% url 'detail' i.pk %}"><img src="{{ i.photo.url }}" alt="" class="img-fluid"></a>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <div class="card-category-box">
+                                <div class="card-category">
+                                    <h6 class="category">{{ i.category }}</h6>
+                                </div>
+                            </div>
+                            <h3 class="card-title"><a href="{% url 'detail' i.pk %}">{{ i.title }}</a></h3>
+                            <p class="card-description">
+                                {{ i.text|truncatewords:30|safe }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="post-author">
+                                <a href="#">
+                                    <span class="author">{{ i.author }}</span>
+                                </a>
+                            </div>
+                            <div class="post-date">
+                                <span class="bi bi-clock"></span> {{ i.created_at|date:"d M Y H:i" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section><!-- End Blog Section -->
+
+{% endblock %}

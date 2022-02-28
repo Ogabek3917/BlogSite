@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row tm-row">
+        <div class="col-12">
+            <hr class="tm-hr-primary tm-mb-55">
+            {% if post.photo %}
+            <div class="tm-post-link-inner">
+                <img src="{{ post.photo.url }}" alt="Image" class="img-fluid">                            
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row tm-row">
+        <div class="col-lg-8 tm-post-col">
+            <div class="tm-post-full">                    
+                <div class="mb-4">
+                    <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                    <p>{{ post.text }}</p>
+                    <p class="tm-mb-40">{{ post.updated_at }} posted by {{ post.author }}</p>
+                   
+                </div>
+                {% if request.user == post.author %}
+                <a href="{% url 'editpost' post.id %}" class="tm-btn tm-btn-primary tm-btn-small"><span
+                        class="bi bi-pencil-square"></span> Edit</a>
+                <a href="{% url 'deletepost' post.id %}" class="tm-btn tm-btn-primary tm-btn-small"><span
+                        class="bi bi-trash"></span> Delete</a>
+                {% endif %}   
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base1.html' %}
+
+{% block title %} Add New Post {% endblock %}
+
+{% block content %}
+<div class="row tm-row tm-mb-120">
+    <div class="col-12">
+        <h2 class="tm-color-primary tm-post-title tm-mb-60">Add New Post</h2>
+    </div>
+        <div class="col-lg-7 tm-contact-left">
+            
+            <form method="POST" enctype="multipart/form-data" class="mb-5 ml-auto mr-0 tm-contact-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="tm-btn tm-btn-primary tm-btn-small"> Save</button>
+            </form>
+        </div>
+    
+</div>
+{% endblock %}

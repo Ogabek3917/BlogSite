@@ -1,0 +1,27 @@
+<div class="row tm-mt-100 tm-mb-75">
+    {% if page.has_other_pages %}
+        <div class="tm-prev-next-wrapper">
+            {% if page.has_previous %}
+                <a class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20" href="?page={{ page.previous_page_number }}">&laquo; Prev</a>
+            {% endif %}
+            {% for i in page.paginator.page_range %}
+            <nav class="tm-paging-nav d-inline-block">
+                <ul>
+                    {% if page.number == i %}
+                    <li class="tm-paging-item active">
+                        <a class="mb-2 tm-btn tm-paging-link">{{ i }}</a>
+                    </li>
+                    {% else %}
+                    <li class="tm-paging-item">
+                        <a href="?page={{ i }}" class="mb-2 tm-btn tm-paging-link">{{ i }}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endfor %}
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
